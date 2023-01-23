@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="product_template_manufacturer_form_view" model="ir.ui.view">
+        <field name="name">product.template.form - product_manufacturer</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <page name="general_information" position="inside">
+                <group name="manufacturer" string="Hersteller">
+                    <group>
+                        <field name="manufacturer" string="Hersteller" context="{'default_supplier':True, 'default_customer':False}"/>
+                        <field name="manufacturer_pref" string="Herst.ArtikelNr." />                        
+                    </group>
+                    <group>
+                        <field name="manufacturer_pname" string="Herst.Produktbezeichnung" />
+                        <field name="manufacturer_purl" string="Herst.Produkt URL" widget="url"/>
+                    </group>
+                </group>
+            </page>
+        </field>
+    </record>
+
+</odoo>

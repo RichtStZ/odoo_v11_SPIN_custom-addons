@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_order_product_product_pivot_new" model="ir.ui.view">
+            <field name="name">sale.report.pivot</field>
+            <field name="model">sale.report</field>
+            <field name="inherit_id" ref="sale.view_order_product_pivot"/>
+            <field name="arch" type="xml">
+                <field name="price_subtotal" position="after">
+                     <field name="delivery_status" type="measure"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_order_product_product_graph_new" model="ir.ui.view">
+            <field name="name">sale.report.graph</field>
+            <field name="model">sale.report</field>
+            <field name="inherit_id" ref="sale.view_order_product_graph"/>
+            <field name="arch" type="xml">
+                <field name="price_subtotal" position="after">
+                    <field name="delivery_status" type="measure"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_order_product_product_search_new" model="ir.ui.view">
+            <field name="name">sale.report.search</field>
+            <field name="model">sale.report</field>
+            <field name="inherit_id" ref="sale.view_order_product_search"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="delivery_status" type="measure" filter_domain="['|',('delivery_status', '=', 'open'),('delivery_status', '=', 'paid')]"/>
+                </field>
+                <xpath expr="//search/group[2]" position="inside">
+                    <filter string="Delivery Status" name="delivery_status" context="{'group_by':'delivery_status'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

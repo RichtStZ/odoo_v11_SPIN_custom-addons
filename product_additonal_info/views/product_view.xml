@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="product_template_additonal-info_form_view" model="ir.ui.view">
+        <field name="name">product.template.form_additional_info</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <page name="general_information" position="inside">
+                <xpath expr="//group[last()]" position="after">
+                    <group name="additional_information" string="Weitere Informationen"> <!--Additional Information-->
+                        <group>
+                            <field name="xrs_old_FM_number"/>
+                            <field name="xrs_product_ref_ebay"/>
+                            <field name="xrs_product_ASIN_amazon"/>               
+                        </group>
+                        <group>
+                            <field name="xrs_lastupdatePrice"/>
+                            <field name="xrs_lastupdateProduct"/> 
+                            <!--
+                            <field name="xrs_product_default_location1"/>
+                            <field name="xrs_product_default_location2"/>
+                            -->
+                        </group>
+                    </group>
+                </xpath>    
+            </page>
+            <page name="sales" position="inside">
+                <xpath expr="point of sale" position="after">
+                    <group name="marketplace information" string="Weitere Informationen"> <!--Marketplace Information-->
+                        <field name="xrs_product_ref_ebay"/>
+                        <field name="xrs_product_ASIN_amazon"/>
+                        <!--
+                        <field name="xrs_product_NrOfPeter"/>
+                        -->
+                    </group>
+                </xpath>
+            </page>
+        </field>
+    </record>
+    
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_purchase_order_order_pivot">
+            <field name="name">product.month.pivot.new</field>
+            <field name="model">purchase.report</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_pivot"/>
+            <field name="arch" type="xml">
+                <field name="price_average" position="after">
+                    <field name="shipping_status" type="measure"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_purchase_order_order_graph">
+            <field name="name">product.month.graph</field>
+            <field name="model">purchase.report</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_graph"/>
+            <field name="arch" type="xml">
+                <field name="price_average" position="after">
+                    <field name="shipping_status"  type="measure" string="Receive Status"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_purchase_order_order_search" model="ir.ui.view">
+            <field name="name">report.purchase.order.search</field>
+            <field name="model">purchase.report</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_search"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="shipping_status" type="measure" filter_domain="['|',('shipping_status', '=', 'open'),('shipping_status', '=', 'paid')]"/>
+                </field>
+                <field name="category_id" position="after">
+                    <field name="shipping_status" type="measure"/>
+                </field>
+                <xpath expr="//search/group[2]" position="inside">
+                    <filter string="Shipping Status" name="shipping_status" context="{'group_by':'shipping_status'}"/>
+                </xpath>
+            </field>
+    </record>
+    </data>
+</odoo>
